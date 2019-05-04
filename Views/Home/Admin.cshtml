@@ -1,0 +1,121 @@
+﻿@using FormCreatorMVC.Models;
+@model AdminViewModel
+@{
+    ViewData["Title"] = "Form Admin Sayfası";
+    Layout = "_Layout";
+}
+
+@if (!Model.Forms.Any())
+{
+    <div class="d-flex justify-content-center mt-5">
+        <h4>Form bulunmamaktadır.</h4>
+    </div>
+}
+else
+{
+    <form asp-controller="Home" asp-action="FormAdmin" method="post">
+        <div class="d-flex justify-content-center mt-5">
+            <p>
+                <input type="text" name="SearchString" placeholder="Form İsmi">
+                <input class="btn btn-danger" type="submit" value="Ara" />
+            </p>
+        </div>
+    </form>
+    <div class="d-flex flex-column bd-highlight ml-4 mt-3">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">Form Ismı</th>
+                    <th scope="col">Açıklama</th>
+                    <th scope="col">Oluşturan ID</th>
+                    <th scope="col">Tarih</th>
+                    <th scope="col">İsim</th>
+                    <th scope="col">Soyisim</th>
+                    <th scope="col">Yaş</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.Forms)
+                {
+                    <tr>
+
+                        @*<td>@item.ID</td>*@
+                        <td>@item.Name</td>
+                        <td>@item.Description</td>
+                        <td>@item.CreatedBy</td>
+                        <td>@item.CreatedAt</td>
+                        <td>@item.CreatorName</td>
+                        <td>@item.CreatorLastName</td>
+                        <td>@item.CreatorAge</td>
+                        <td>
+                            <form action="/Home/Forms" method="get">
+                                <input type="text" id="id" name="id" value="@item.ID" hidden>
+                                <input class="btn bg-success font-weight-bold" type="submit">
+                            </form>
+                        </td>
+
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+}
+<div class="d-flex justify-content-center mt-5">
+    <button id="createFormBtn" class="btn btn-success" data-toggle="modal" data-target="#exampleModal"> Form Oluştur</button>
+</div>
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Form Oluştur</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+
+                <div class="d-flex justify-content-start">
+                    <div class="p-2">
+                        <label class="font-weight-bold">Form İsmi : </label>
+                        <input id="formName" type="text" required />
+                    </div>
+                </div>
+
+                <div class="d-flex justify-content-start">
+                    <div class="p-2">
+                        <label class="font-weight-bold">Açıklama : </label>
+                        <input id="formDescr" type="text" required />
+                    </div>
+                </div>
+                <div class="d-flex justify-content-start">
+                    <div class="p-2">
+                        <label class="font-weight-bold">Oluşturulma Tarihi : </label>
+                        <input id="formCrDate" type="date" required />
+                    </div>
+                </div>
+                <div class="justify-content-start">
+                    <div class="p-2">
+                        <label class="font-weight-bold"> İsmi : </label>
+                        <input id="formCroName" type="text" required />
+                    </div>
+                </div>
+                <div class="d-flex justify-content-start">
+                    <div class="p-2">
+                        <label class="font-weight-bold"> Soyisim : </label>
+                        <input id="formCroLastName" type="text" required />
+                    </div>
+                </div>
+                <div class="d-flex justify-content-start">
+                    <div class="p-2">
+                        <label class="font-weight-bold"> Yaş : </label>
+                        <input id="formCroAge" type="number" />
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Çık</button>
+                <button type="button" id="formSaveBtn" class="btn btn-success"> Kaydet</button>
+            </div>
+        </div>
+    </div>
+</div>

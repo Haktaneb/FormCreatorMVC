@@ -1,0 +1,79 @@
+﻿@using FormCreatorMVC.Models;
+@model FormViewModel
+@{
+    ViewData["Title"] = "Form Görüntüleme Sayfası";
+    Layout = "_Layout";
+}
+@if (Model.Form != null)
+{
+<div class="container">
+    <div class="row">
+        <div class="col-sm-2">
+            <label class="font-weight-bold">ID: </label>
+        </div>
+        <div class="col-md-6">
+            <input class="w-75" id="formName" type="text" required value=@Model.Form.ID />
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-2">
+            <label class="font-weight-bold">Form İsmi : </label>
+        </div>
+        <div class="col-md-6">
+            <input class="w-75" id="formName" type="text" required value=@Model.Form.Name />
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-2">
+            <label class="font-weight-bold">Açıklama : </label>
+        </div>
+        <div class="col-md-6">
+            <input class="w-75" id="formName" type="text" required value=@Model.Form.Description />
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-2">
+            <label class="font-weight-bold">Oluşturulma Tarihi : </label>
+        </div>
+        <div class="col-md-6">
+            <input class="w-75" id="formName" type="text" required value=@Model.Form.CreatedAt />
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-2">
+            <label class="font-weight-bold">Oluşturan ID: </label>
+        </div>
+        <div class="col-md-6">
+            <input class="w-75" id="formName" type="text" required value=@Model.Form.CreatedBy />
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-2">
+            <label class="font-weight-bold">İsim </label>
+        </div>
+        <div class="col-md-6">
+            <input class="w-75" id="formName" type="text" required value=@Model.Form.CreatorName />
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-2">
+            <label class="font-weight-bold">Soy İsim </label>
+        </div>
+        <div class="col-md-6">
+            <input class="w-75" id="formName" type="text" required value=@Model.Form.CreatorLastName />
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-2">
+            <label class="font-weight-bold">Yaş </label>
+        </div>
+        <div class="col-md-6">
+            <input class="w-75" id="formName" type="text" required value=@Model.Form.CreatorAge />
+        </div>
+    </div>
+</div>
+}
+else
+{
+ <h2>blank</h2>
+}
